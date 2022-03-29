@@ -27,8 +27,7 @@
                         <td><a type="button" class="btn btn-success"
                                href="/update-category?id=${category.id}">Update</a>
                             <a type="button" class="btn btn-warning"
-                               onclick="return confirm('Do you want to delete the category?')"
-                               href="/delete-category?id=${category.id}">Delete</a></td>
+                               onclick="deleteProfile(${category.id});">Delete</a></td>
                     </tr>
                 </c:forEach>
                 </tbody>
@@ -37,4 +36,15 @@
     </div>
 
 </div>
+
 <%@ include file="common/footer.jspf"%>
+<%@ include file="common/modal.jsp"%>
+<script>function deleteProfile(id) {
+	document.querySelector('#modal').classList.add('show');
+	document.querySelector('#modal-ok').addEventListener('click', ()=> {
+		location.href = '/delete-product?id=' + id;
+	});
+	document.querySelector('#modal-cancel').addEventListener('click', ()=> {
+		document.querySelector('#modal').classList.remove('show');
+	});
+}</script>

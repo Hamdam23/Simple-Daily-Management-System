@@ -22,8 +22,11 @@ import java.util.Date;
 @Controller
 public class CategoryController {
 
-    @Autowired
-    private ICategoryService categoryService;
+    private final ICategoryService categoryService;
+
+    public CategoryController(ICategoryService categoryService) {
+        this.categoryService = categoryService;
+    }
 
     @InitBinder
     public void initBinder(WebDataBinder binder) {

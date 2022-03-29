@@ -29,7 +29,7 @@
                 <h5 class="modal-title">Delete</h5>
             </div>
             <div class="modal-body">
-                <p style="text-align: center">Delete this product?</p>
+                <p style="text-align: center">Delete this item?</p>
             </div>
             <div class="modal-footer">
                 <button id="modal-ok" type="button" class="btn btn-secondary" data-bs-dismiss="modal">YES</button>

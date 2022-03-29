@@ -30,3 +30,4 @@
 	</div>
 </div>
 <%@ include file="common/footer.jspf"%>
+<%@ include file="common/modal.jsp"%>

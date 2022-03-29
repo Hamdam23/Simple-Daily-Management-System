@@ -10,6 +10,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
 @Entity
+//databaseda shundin table yaratish uchun ishlatilinarmadi
 @Table(name = "todos")
 public class Todo {
 

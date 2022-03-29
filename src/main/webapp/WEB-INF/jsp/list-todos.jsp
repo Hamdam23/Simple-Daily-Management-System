@@ -28,8 +28,7 @@
 							<td><a type="button" class="btn btn-success"
 								href="/update-todo?id=${todo.id}">Update</a>
 							<a type="button" class="btn btn-warning"
-							   onclick="return confirm('Do you want to delete the TODO?')"
-							   href="/delete-todo?id=${todo.id}">Delete</a></td>
+							   onclick="deleteProfile(${todo.id});">Delete</a></td>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -38,4 +37,15 @@
 	</div>
 
 </div>
+
 <%@ include file="common/footer.jspf"%>
+<%@ include file="common/modal.jsp"%>
+<script>function deleteProfile(id) {
+	document.querySelector('#modal').classList.add('show');
+	document.querySelector('#modal-ok').addEventListener('click', ()=> {
+		location.href = '/delete-product?id=' + id;
+	});
+	document.querySelector('#modal-cancel').addEventListener('click', ()=> {
+		document.querySelector('#modal').classList.remove('show');
+	});
+}</script>

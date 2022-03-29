@@ -13,8 +13,11 @@ import net.guides.springboot.todomanagement.repository.TodoRepository;
 @Service
 public class TodoService implements ITodoService {
 
-	@Autowired
-	private TodoRepository todoRepository;
+	private final TodoRepository todoRepository;
+
+	public TodoService(TodoRepository todoRepository) {
+		this.todoRepository = todoRepository;
+	}
 
 	@Override
 	public List<Todo> getTodosByUser(String user) {
