@@ -4,7 +4,7 @@
         justify-content: space-between;
     }
     .modal-header{
-        background-color: #1d588a;
+        background-color: #143a81;
     }
     .modal-title {
         color: #fff;
@@ -33,7 +33,7 @@
             </div>
             <div class="modal-footer">
                 <button id="modal-ok" type="button" class="btn btn-secondary" data-bs-dismiss="modal">YES</button>
-                <button id="modal-cancel" type="button" class="btn btn-primary">NO</button>
+                <button id="modal-cancel" type="button" class="btn btn-primary" data-bs-dismiss="modal">NO</button>
             </div>
         </div>
     </div>

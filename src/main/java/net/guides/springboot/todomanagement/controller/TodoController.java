@@ -5,7 +5,6 @@ import java.util.Date;
 
 import javax.validation.Valid;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -24,8 +23,11 @@ import net.guides.springboot.todomanagement.service.ITodoService;
 @Controller
 public class TodoController {
 
-	@Autowired
-	private ITodoService todoService;
+	private final ITodoService todoService;
+
+	public TodoController(ITodoService todoService) {
+		this.todoService = todoService;
+	}
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
@@ -38,7 +40,6 @@ public class TodoController {
 	public String showTodos(ModelMap model) {
 		String name = getLoggedInUserName(model);
 		model.put("todos", todoService.getTodosByUser(name));
-		// model.put("todos", service.retrieveTodos(name));
 		return "list-todos";
 	}
 
@@ -48,7 +49,6 @@ public class TodoController {
 		if (principal instanceof UserDetails) {
 			return ((UserDetails) principal).getUsername();
 		}
-
 		return principal.toString();
 	}
 
@@ -61,7 +61,6 @@ public class TodoController {
 	@RequestMapping(value = "/delete-todo", method = RequestMethod.GET)
 	public String deleteTodo(@RequestParam long id) {
 		todoService.deleteTodo(id);
-		// service.deleteTodo(id);
 		return "redirect:/list-todos";
 	}
 
@@ -74,11 +73,9 @@ public class TodoController {
 
 	@RequestMapping(value = "/update-todo", method = RequestMethod.POST)
 	public String updateTodo(ModelMap model, @Valid Todo todo, BindingResult result) {
-
 		if (result.hasErrors()) {
 			return "todo";
 		}
-
 		todo.setUserName(getLoggedInUserName(model));
 		todoService.updateTodo(todo);
 		return "redirect:/list-todos";
@@ -86,11 +83,9 @@ public class TodoController {
 
 	@RequestMapping(value = "/add-todo", method = RequestMethod.POST)
 	public String addTodo(ModelMap model, @Valid Todo todo, BindingResult result) {
-
 		if (result.hasErrors()) {
 			return "todo";
 		}
-
 		todo.setUserName(getLoggedInUserName(model));
 		todoService.saveTodo(todo);
 		return "redirect:/list-todos";
